@@ -23,6 +23,6 @@ const productValidationSchema = z.object({
   inventory: inventoryValidationSchema,
 });
 
-export type Product = z.infer<typeof productValidationSchema>
+export type Product = z.infer<typeof productValidationSchema>;
 
 export default productValidationSchema;

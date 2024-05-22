@@ -8,4 +8,4 @@ exports.orderSchema = new mongoose_1.Schema({
     price: { type: Number, required: [true, 'Product price is required'] },
     quantity: { type: Number, required: [true, 'Product quantity is required'] },
 });
-exports.Order = (0, mongoose_1.model)("Order", exports.orderSchema);
+exports.Order = (0, mongoose_1.model)('Order', exports.orderSchema);

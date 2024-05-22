@@ -17,7 +17,6 @@ const createOrder = (orderData) => __awaiter(void 0, void 0, void 0, function* (
     const { productId, quantity } = orderData;
     // get the ordered product data from db using productId
     const product = yield porduct_model_1.Product.findById(productId);
-    console.log("show");
     if (product === null) {
         throw new Error('Product not found!');
     }

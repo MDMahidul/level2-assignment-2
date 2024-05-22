@@ -31,4 +31,4 @@ exports.productSchema = new mongoose_1.Schema({
         required: [true, 'Product inventory is required'],
     },
 });
-exports.Product = (0, mongoose_1.model)("Product", exports.productSchema);
+exports.Product = (0, mongoose_1.model)('Product', exports.productSchema);

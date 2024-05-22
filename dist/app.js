@@ -14,9 +14,9 @@ app.use((0, cors_1.default)());
 app.use('/api/products', product_routes_1.ProductRouters);
 //order router endpoints
 app.use('/api/orders', order_routes_1.OrderRouters);
-/* app.get("/", (req:Request, res:Response) => {
-  res.send("Hello miki!");
-}); */
+app.get("/", (req, res) => {
+    res.send("assignment 2 running successfully");
+});
 // handle route not found error
 app.use((req, res) => {
     res.status(404).json({

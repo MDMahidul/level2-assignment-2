@@ -15,10 +15,10 @@ const createProduct = async (req: Request, res: Response) => {
       message: 'Product created successfully!',
       data: result,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     res.status(500).json({
       success: false,
-      message: error.message || 'Something went wrong!',
+      message: 'Something went wrong!',
       error: error,
     });
   }
@@ -37,7 +37,7 @@ const getProducts = async (req: Request, res: Response) => {
         message: searchTerm
           ? `No products found on matching search key ${searchTerm}`
           : 'No products found in the database!',
-          data:null
+        data: null,
       });
     }
 
@@ -48,11 +48,10 @@ const getProducts = async (req: Request, res: Response) => {
         : 'Products data retrieved from DB successfully!',
       data: result,
     });
-
-  } catch (error: any) {
+  } catch (error: unknown) {
     res.status(500).json({
       success: false,
-      message: 'Could not fetch any product!',
+      message: 'Could not fetch unknown product!',
       error: error,
     });
   }
@@ -69,7 +68,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
       message: 'Product fetched successfully!',
       data: result,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     res.status(500).json({
       success: false,
       message: 'Could not fetch product!',
@@ -87,9 +86,9 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: 'Product deleted successfully!',
-      data: null,
+      data: result,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     res.status(500).json({
       success: false,
       message: 'Could not delete product!',
@@ -117,7 +116,7 @@ const updateSingleProduct = async (req: Request, res: Response) => {
       message: 'Product updated successfully!',
       data: result,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     res.status(500).json({
       success: false,
       message: 'Could not update product!',

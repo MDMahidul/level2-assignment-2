@@ -3,12 +3,12 @@ import { TOrder } from './order.interface';
 import { Order } from './order.model';
 
 const createOrder = async (orderData: TOrder) => {
-    // get the product data from orderData
-    const { productId, quantity } = orderData;
-    
-    // get the ordered product data from db using productId
-    const product = await Product.findById(productId); 
-    console.log("show");
+  // get the product data from orderData
+  const { productId, quantity } = orderData;
+
+  // get the ordered product data from db using productId
+  const product = await Product.findById(productId);
+
   if (product === null) {
     throw new Error('Product not found!');
   }
@@ -34,16 +34,14 @@ const createOrder = async (orderData: TOrder) => {
 };
 
 // get all order
-const getOrders = async (email?:string) => {
-    let result;
-    // check if param query available or not
-    if(email){
-        result = await Order.find({email:email});
-        
-    }else{
-
-        result = await Order.find();
-    }
+const getOrders = async (email?: string) => {
+  let result;
+  // check if param query available or not
+  if (email) {
+    result = await Order.find({ email: email });
+  } else {
+    result = await Order.find();
+  }
 
   return result;
 };

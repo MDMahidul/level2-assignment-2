@@ -30,7 +30,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (error) {
         res.status(500).json({
             success: false,
-            message: error.message || 'Something went wrong!',
+            message: 'Something went wrong!',
             error: error,
         });
     }
@@ -47,7 +47,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 message: searchTerm
                     ? `No products found on matching search key ${searchTerm}`
                     : 'No products found in the database!',
-                data: null
+                data: null,
             });
         }
         res.status(200).json({
@@ -61,7 +61,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     catch (error) {
         res.status(500).json({
             success: false,
-            message: 'Could not fetch any product!',
+            message: 'Could not fetch unknown product!',
             error: error,
         });
     }
@@ -95,7 +95,7 @@ const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
         res.status(200).json({
             success: true,
             message: 'Product deleted successfully!',
-            data: null,
+            data: result,
         });
     }
     catch (error) {

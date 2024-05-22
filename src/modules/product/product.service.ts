@@ -53,7 +53,6 @@ const updateSingleProduct = async (
   return result;
 };
 
-
 export const ProductServices = {
   createProduct,
   getProducts,

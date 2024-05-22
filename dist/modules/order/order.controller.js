@@ -26,10 +26,11 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             data: result,
         });
     }
-    catch (err) {
+    catch (error) {
         res.status(500).json({
             success: false,
             message: 'Product not found!',
+            error: error,
         });
     }
 });
@@ -56,7 +57,8 @@ const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (err) {
         res.status(500).json({
             success: false,
-            message: err.message || 'Something went wrong!',
+            message: 'Something went wrong!',
+            error: err
         });
     }
 });
