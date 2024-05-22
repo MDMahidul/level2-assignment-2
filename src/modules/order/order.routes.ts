@@ -6,4 +6,7 @@ const router = express.Router();
 // create order
 router.post('/', orderController.createOrder);
 
+// get orders
+router.get('/', orderController.getOrders);
+
 export const OrderRouters = router;
