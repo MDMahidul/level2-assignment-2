@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const product_validation_1 = __importDefault(require("./product.validation"));
 const product_service_1 = require("./product.service");
+//controller for adding data
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const productData = req.body;
@@ -34,6 +35,7 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
+//controller for get all data, also by searching
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { searchTerm } = req.query;
@@ -64,6 +66,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         });
     }
 });
+//controller for get single data
 const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
@@ -83,6 +86,7 @@ const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
+//controller for deleteing single data
 const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
@@ -102,6 +106,7 @@ const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
         });
     }
 });
+//controller for updating data
 const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { productId } = req.params;
