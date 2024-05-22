@@ -18,5 +18,12 @@ app.use('/api/orders', OrderRouters);
   res.send("Hello miki!");
 }); */
 
+// handle route not found error
+app.use((req: Request, res: Response) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found!',
+  });
+});
 
 export default app;
