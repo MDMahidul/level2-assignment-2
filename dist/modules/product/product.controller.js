@@ -34,12 +34,25 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield product_service_1.ProductServices.getAllProducts();
+        const { searchTerm } = req.query;
+        const result = yield product_service_1.ProductServices.getProducts(searchTerm);
+        // show message if no data found for the search key
+        if (result.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: searchTerm
+                    ? `No products found on matching search key ${searchTerm}`
+                    : 'No products found in the database!',
+                data: null
+            });
+        }
         res.status(200).json({
             success: true,
-            message: 'Products data retrieved from DB successfully!',
+            message: searchTerm
+                ? `Products matching search term ${searchTerm} fetched successfully!`
+                : 'Products data retrieved from DB successfully!',
             data: result,
         });
     }
@@ -89,9 +102,34 @@ const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, func
         });
     }
 });
+const updateSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const updatedData = req.body;
+        //check udpdate data validation
+        const upDataValidation = product_validation_1.default.parse(updatedData);
+        const result = yield product_service_1.ProductServices.updateSingleProduct(productId, upDataValidation);
+        //console.log(result);
+        res.status(200).json({
+            success: true,
+            message: 'Product updated successfully!',
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Could not update product!',
+            error: error,
+        });
+    }
+});
+/* const searchProducts = async (req: Request, res: Response) => {
+}; */
 exports.ProductController = {
     createProduct,
-    getAllProducts,
+    getProducts,
     getSingleProduct,
     deleteSingleProduct,
+    updateSingleProduct,
 };

@@ -23,15 +23,30 @@ const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getAllProducts = async (req: Request, res: Response) => {
+const getProducts = async (req: Request, res: Response) => {
   try {
-    const result = await ProductServices.getAllProducts();
+    const { searchTerm } = req.query;
+    const result = await ProductServices.getProducts(searchTerm as string);
+
+    // show message if no data found for the search key
+    if (result.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: searchTerm
+          ? `No products found on matching search key ${searchTerm}`
+          : 'No products found in the database!',
+          data:null
+      });
+    }
 
     res.status(200).json({
       success: true,
-      message: 'Products data retrieved from DB successfully!',
+      message: searchTerm
+        ? `Products matching search term ${searchTerm} fetched successfully!`
+        : 'Products data retrieved from DB successfully!',
       data: result,
     });
+
   } catch (error: any) {
     res.status(500).json({
       success: false,
@@ -78,9 +93,40 @@ const deleteSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
+const updateSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const updatedData = req.body;
+
+    //check udpdate data validation
+    const upDataValidation = productValidationSchema.parse(updatedData);
+
+    const result = await ProductServices.updateSingleProduct(
+      productId,
+      upDataValidation,
+    );
+    //console.log(result);
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: 'Could not update product!',
+      error: error,
+    });
+  }
+};
+
+/* const searchProducts = async (req: Request, res: Response) => {
+}; */
+
 export const ProductController = {
   createProduct,
-  getAllProducts,
+  getProducts,
   getSingleProduct,
   deleteSingleProduct,
+  updateSingleProduct,
 };
