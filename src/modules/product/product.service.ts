@@ -14,7 +14,21 @@ const getAllProducts = async()=>{
     return result;
 }
 
+const getSingleProduct = async(productId:string)=>{
+    const result = await Product.findById(productId);
+
+    return result
+}
+
+const deleteSingleProduct=async(productId:string)=>{
+    const result = await Product.findByIdAndDelete( productId );
+
+    return result;
+}
+
 export const ProductServices = {
   createProduct,
   getAllProducts,
+  getSingleProduct,
+  deleteSingleProduct,
 };

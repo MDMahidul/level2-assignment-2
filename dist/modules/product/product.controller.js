@@ -51,7 +51,47 @@ const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
+const getSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const result = yield product_service_1.ProductServices.getSingleProduct(productId);
+        //console.log(result);
+        res.status(200).json({
+            success: true,
+            message: 'Product fetched successfully!',
+            data: result,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Could not fetch product!',
+            error: error,
+        });
+    }
+});
+const deleteSingleProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId } = req.params;
+        const result = yield product_service_1.ProductServices.deleteSingleProduct(productId);
+        //console.log(result);
+        res.status(200).json({
+            success: true,
+            message: 'Product deleted successfully!',
+            data: null,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Could not delete product!',
+            error: error,
+        });
+    }
+});
 exports.ProductController = {
     createProduct,
     getAllProducts,
+    getSingleProduct,
+    deleteSingleProduct,
 };

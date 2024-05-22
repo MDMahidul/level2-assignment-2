@@ -19,7 +19,17 @@ const getAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield porduct_model_1.Product.find();
     return result;
 });
+const getSingleProduct = (productId) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield porduct_model_1.Product.findById(productId);
+    return result;
+});
+const deleteSingleProduct = (productId) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield porduct_model_1.Product.findByIdAndDelete(productId);
+    return result;
+});
 exports.ProductServices = {
     createProduct,
     getAllProducts,
+    getSingleProduct,
+    deleteSingleProduct,
 };
