@@ -486,7 +486,7 @@ Errors are handled using custom error classes and middleware. Common errors incl
         
         ```
 
-### Live Project Link
+### Live Link
 Click here: [Bike Rental Service](https://bike-rental-service-server-puce.vercel.app/)
             
         
